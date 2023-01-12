@@ -8,6 +8,9 @@ from .serializers import MemberSerializer
 from .models import Member
 # Create your views here.
 
+
+# List UR Links
+# -----------------------------------------------------------------------------------
 @api_view(['GET'])
 def apiOverview(request):
 	api_urls = {
@@ -19,20 +22,31 @@ def apiOverview(request):
 		}
 
 	return Response(api_urls)
+# -----------------------------------------------------------------------------------
 
+
+# List All Members
+# -----------------------------------------------------------------------------------
 @api_view(['GET'])
 def memberList(request):
 	members = Member.objects.all().order_by('-id')
 	serializer = TaskSerializer(members, many=True)
 	return Response(serializer.data)
+# -----------------------------------------------------------------------------------
 
+
+# View Detailed Member Info
+# -----------------------------------------------------------------------------------
 @api_view(['GET'])
 def memberDetail(request, pk):
 	members = member.objects.get(id=pk)
 	serializer = MemberSerializer(members, many=False)
 	return Response(serializer.data)
+# -----------------------------------------------------------------------------------
 
 
+# Register a New Mwmber
+# -----------------------------------------------------------------------------------
 @api_view(['POST'])
 def memberCreate(request):
 	serializer = MemberSerializer(data=request.data)
@@ -41,7 +55,11 @@ def memberCreate(request):
 		serializer.save()
 
 	return Response(serializer.data)
+# -----------------------------------------------------------------------------------
 
+
+# Update Member Info
+# -----------------------------------------------------------------------------------
 @api_view(['POST'])
 def memberUpdate(request, pk):
 	member = member.objects.get(id=pk)
@@ -51,14 +69,15 @@ def memberUpdate(request, pk):
 		serializer.save()
 
 	return Response(serializer.data)
+# -----------------------------------------------------------------------------------
 
 
+# Delete a Member
+# -----------------------------------------------------------------------------------
 @api_view(['DELETE'])
 def memberDelete(request, pk):
 	member = member.objects.get(id=pk)
 	member.delete()
 
 	return Response('Item succsesfully delete!')
-
-
-
+# -----------------------------------------------------------------------------------
