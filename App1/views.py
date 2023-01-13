@@ -45,7 +45,7 @@ def memberDetail(request, pk):
 # -----------------------------------------------------------------------------------
 
 
-# Register a New Mwmber
+# Register a New Member
 # -----------------------------------------------------------------------------------
 @api_view(['POST'])
 def memberCreate(request):
