@@ -30,7 +30,7 @@ def apiOverview(request):
 @api_view(['GET'])
 def memberList(request):
 	members = Member.objects.all().order_by('-id')
-	serializer = TaskSerializer(members, many=True)
+	serializer = MemberSerializer(members, many=True)
 	return Response(serializer.data)
 # -----------------------------------------------------------------------------------
 

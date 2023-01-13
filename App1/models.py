@@ -8,4 +8,4 @@ class Member(models.Model):
     email = models.EmailField(max_length=27)
     phone = models.IntegerField(validators=[MinValueValidator(10), MaxValueValidator(15)])
     residence = models.CharField(max_length=10)
-    studyyear = models.IntegerField()
+    study_year = models.IntegerField(default=2)
